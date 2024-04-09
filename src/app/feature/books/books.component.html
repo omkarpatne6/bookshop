@@ -1,0 +1,7 @@
+<div class="container-fluid my-4">
+    <div class="row">
+        <div class="col-md-4 col-lg-3 card-deck gy-4" *ngFor="let book of data">
+            <app-book-card [book] = book></app-book-card>
+        </div>
+    </div>
+</div>
