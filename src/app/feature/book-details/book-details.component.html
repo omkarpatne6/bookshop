@@ -1,0 +1,26 @@
+<div class="container tw-h-[90vh]">
+    <div class="tw-flex tw-justify-center tw-items-center tw-h-full">
+        <div class="row tw-h-[90%] tw-w-full shadow-lg">
+            <div class="col-md-6 tw-bg-gray-50">
+                <img class="tw-h-full tw-m-auto"
+                    src="https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg"
+                    alt="Card image cap">
+            </div>
+            <div class="col-md-6 tw-flex tw-flex-col tw-justify-center md:tw-px-10">
+                <div class="tw-font-bold tw-text-3xl tw-mb-5">{{data?.title}}</div>
+                <div class="tw-mb-2 tw-text-sm">Category: {{data?.categories[0]}}</div>
+                <div class="tw-mb-5 tw-text-sm">Published date: {{data?.publishedDate.$date | date : 'mediumDate' }}</div>
+                <div class="tw-mb-10 tw-font-semibold tw-text-xl">₹{{data?.price}}</div>
+
+                <div class="tw-text-sm">{{data?.shortDescription}}</div>
+
+                <button type="button" (click)="addToCart(data)"
+                    class="md:tw-me-auto sm:tw-mx-auto tw-relative tw-group tw-overflow-hidden tw-w-40 tw-mt-5 tw-p-2 tw-font-semibold tw-border-2 tw-block">
+                    <span
+                        class="tw-absolute tw-top-0 tw-left-0 tw-flex tw-w-full tw-h-0 tw-mb-0 tw-transition-all tw-duration-200 tw-ease-out tw-transform tw-translate-y-0 tw-bg-gray-200 group-hover:tw-h-full tw-opacity-90"></span>
+                    <span class="tw-relative">Add to cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

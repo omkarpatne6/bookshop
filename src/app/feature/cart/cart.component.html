@@ -1,43 +1,104 @@
-<div class="container my-4">
-    <div class="row">
-        <div class="col-12" *ngFor="let book of data">
-            <div class="card rounded-3 mb-4">
-            <div class="card-body py-4">
-              <div class="row d-flex justify-content-between align-items-center">
+<div *ngIf="data.length === 0" class="tw-flex tw-justify-center tw-items-center tw-h-[90vh]">
+  <div>Cart is empty!!!</div>
+</div>
+
+<div class="container tw-mt-10" *ngIf="data.length !== 0">
+  <div class="row shadow-lg">
+    <div class="col-md-8 tw-h-full">
+
+      <div class="title tw-my-5">
+        <div class="tw-text-xl tw-font-bold">Shopping cart</div>
+      </div>
+      <div class="tw-h-full no-scrollbar tw-overflow-y-scroll">
+        <div class="tw-h-[30rem]">
+          <div *ngFor="let book of data" class="tw-w-full ">
+            <div class="py-2">
+              <div class="row d-flex justify-content-between align-items-center tw-w-full">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                  <img
-                    src={{book?.thumbnailUrl}}
-                    class="card-img-top img-fluid rounded-3" alt="Cotton T-shirt">
+                  <img src={{book?.thumbnailUrl}} class="img-fluid tw-cursor-pointer" alt="book-image" [routerLink]="['/details', book.isbn]">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-3">
-                  <p class="lead fw-normal mb-2">{{book?.title}}</p>
-                  <p><span class="text-muted">Author: </span>{{book.authors[0]}}</p>
+                  <p class="tw-text-sm tw-cursor-pointer hover:tw-text-blue-500" [routerLink]="['/details', book.isbn]">{{book?.title}}</p>
+                  <p class="tw-text-xs"><span class="text-muted">Author: </span>{{book.authors[0]}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                  <button class="btn btn-link px-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                    <i class="fas fa-minus text-muted"></i>
+                  <button class="btn btn-link px-2" (click)="reduceItemQuantity(book.isbn)">
+                    <i class="fas fa-minus tw-text-black tw-text-xs"></i>
                   </button>
-  
-                  <input id="form1" min="0" name="quantity" value={{book?.quantity}} type="number"
-                    class="form-control form-control-sm" />
-  
-                  <button class="btn btn-link px-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)='addItemQuantity("hello")'>
-                    <i class="fas fa-plus text-muted"></i>
+
+                  <input id="form1" min="1" name="quantity" value={{book?.quantity}} type="number"
+                    class="form-control form-control-sm shadow-none tw-rounded-none tw-p-0 tw-m-0 tw-text-xs" />
+
+                  <button class="btn btn-link px-2" (click)='addItemQuantity(book.isbn)'>
+                    <i class="fas fa-plus tw-text-black tw-text-xs"></i>
                   </button>
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                   <h5 class="mb-0">₹ {{book.price}}</h5>
                 </div>
                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                  <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                  <button type="button" (click)="removeFromCart(book.isbn)" class="text-danger"><i
+                      class="fas fa-trash fa-lg"></i></button>
                 </div>
               </div>
             </div>
+            <hr>
           </div>
         </div>
 
-        
+      </div>
     </div>
+
+    <div class="col-md-4">
+      <div class="tw-p-5 tw-flex tw-justify-center tw-items-start tw-flex-col h-100">
+        <div>
+          <div class="tw-text-lg tw-font-bold">Summary</div>
+        </div>
+        <hr class="tw-my-5 tw-w-full">
+
+        <div class="tw-font-semibold tw-text-sm tw-mb-2">Items: <span>{{data.length}}</span></div>
+
+        <div class="tw-flex tw-justify-between tw-items-center tw-w-full">
+          <div class="tw-font-semibold tw-text-sm tw-mb-2">Sub-total: </div>
+          <div class="tw-font-medium tw-text-sm tw-mb-2">₹ {{totalPrice}} /-</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" [(ngModel)]="couponCode"
+            class="form-control shadow-none tw-rounded-none tw-bg-gray-50 tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-focus:ring-blue-500 tw-focus:border-blue-500  tw-w-full tw-p-2.5  tw-dark:bg-gray-700 tw-dark:border-gray-600 tw-dark:placeholder-gray-400 tw-dark:text-white tw-dark:focus:ring-blue-500 tw-dark:focus:border-blue-500"
+            placeholder="Coupon code">
+          <button type="button" (click)="applyCoupon()"
+            class="tw-relative tw-group tw-overflow-hidden tw-px-2 tw-h-full tw-py-2 tw-font-semibold tw-border-2">
+            <span
+              class="tw-absolute tw-top-0 tw-left-0 tw-flex tw-w-full tw-h-0 tw-mb-0 tw-transition-all tw-duration-200 tw-ease-out tw-transform tw-translate-y-0 tw-bg-gray-200 group-hover:tw-h-full tw-opacity-90"></span>
+            <span class="tw-relative">Apply</span>
+          </button>
+        </div>
+
+        <div class="tw-flex tw-justify-between tw-items-center tw-w-full">
+          <div class="tw-font-semibold tw-text-sm tw-mb-2">Discount: </div>
+          <div class="tw-font-medium tw-text-sm tw-mb-2">₹ {{discount}} /-</div>
+        </div>
+
+        <hr class="tw-w-full tw-mt-auto">
+
+        <div class="tw-flex tw-justify-between tw-items-center tw-w-full tw-my-5">
+          <div class="tw-font-semibold tw-text-sm tw-mb-2">Grand total: </div>
+          <div class="tw-font-medium tw-text-sm tw-mb-2 tw-underline">₹ {{finalDiscountedPrice}} /-</div>
+        </div>
+
+        <div class="tw-w-full">
+          <button type="button"
+            class="tw-relative tw-group tw-overflow-hidden tw-w-full tw-h-full tw-py-2 tw-font-semibold tw-border-2">
+            <span
+              class="tw-absolute tw-top-0 tw-left-0 tw-flex tw-w-full tw-h-0 tw-mb-0 tw-transition-all tw-duration-200 tw-ease-out tw-transform tw-translate-y-0 tw-bg-gray-200 group-hover:tw-h-full tw-opacity-90"></span>
+            <span class="tw-relative">Check out</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
 </div>

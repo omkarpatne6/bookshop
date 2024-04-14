@@ -1,11 +1,15 @@
-<div class="card h-100">
-    <img class="card-img-top" src={{book.thumbnailUrl}} alt="Card image cap">
-    <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{book.title}}</h5>
-        <p class="card-text">{{book.authors[0]}}</p>
-        <p>{{ book.publishedDate.$date | date:'mediumDate' }}</p>
-        <div class="text-center mt-auto">
-            <a href="#" class="btn btn-primary w-50 px-0" (click)="setCartData(book)">Add to cart</a>
-        </div>
+<div class="card h-100 tw-border-0 tw-p-5 tw-rounded-none hover:tw-shadow-xl tw-transition tw-duration-300">
+    <img class="card-img-top tw-cursor-pointer" src={{book.thumbnailUrl}} alt="Card image cap" [routerLink]="['/details', book.isbn]">
+    <div class="card-body d-flex flex-column tw-p-0">
+        <h5 class="tw-cursor-pointer hover:tw-text-blue-500 tw-mt-1 tw-text-sm tw-font-semibold" [routerLink]="['/details', book.isbn]">{{book.title}}</h5>
+        <p class="tw-text-xs">{{book.authors[0]}}</p>
+        <p class="tw-text-base tw-font-semibold">₹ {{book.price}}</p>
+        <!-- <div class="text-center mt-auto">
+            <button type="button" (click)="addToCart(book)" class=" tw-relative tw-group tw-overflow-hidden tw-w-full tw-h-full tw-py-2 tw-font-semibold tw-border-2 tw-block">
+                <span
+                    class="tw-absolute tw-top-0 tw-left-0 tw-flex tw-w-full tw-h-0 tw-mb-0 tw-transition-all tw-duration-200 tw-ease-out tw-transform tw-translate-y-0 tw-bg-gray-200 group-hover:tw-h-full tw-opacity-90"></span>
+                <span class="tw-relative">Add to cart</span>
+            </button>
+        </div> -->
     </div>
 </div>
