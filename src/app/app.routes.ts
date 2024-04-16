@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
 import { SellerComponent } from './feature/seller/seller.component';
+import { EditComponent } from './feature/seller/edit/edit.component';
 
 export const routes: Routes = [
     {
@@ -38,5 +39,11 @@ export const routes: Routes = [
         path: 'seller',
         component: SellerComponent,
         title: "Seller",
+        canActivate: [AuthGuard]
+    },
+    {
+        path: ':mode/:id',
+        component: EditComponent,
+        title: "Seller-Edit",
     }
 ];

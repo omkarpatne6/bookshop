@@ -1,7 +1,7 @@
 export interface Books {
     title: string
     isbn: string
-    price: number
+    price: number | string,
     publishedDate: PublishedDate
     thumbnailUrl: string
     shortDescription?: string

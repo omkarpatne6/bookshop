@@ -1,19 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { DatePipe, NgIf } from '@angular/common';
-import { Books } from '../../../types/book';
 import { RouterLink } from '@angular/router';
-import { CartService } from '../../cart/cart.service';
+import { Books } from '../../../types/book';
+import { SellerService } from '../seller.service';
 
 @Component({
-  selector: 'app-book-card',
+  selector: 'app-seller-card',
   standalone: true,
   imports: [DatePipe, RouterLink, NgIf],
-  templateUrl: './book-card.component.html',
-  styleUrl: './book-card.component.css',
-  providers: [DatePipe]
+  templateUrl: './seller-card.component.html',
+  styleUrl: './seller-card.component.css'
 })
-
-export class BookCardComponent {
+export class SellerCardComponent {
   @Input() book: Books = {
     title: '',
     isbn: '',
@@ -25,9 +23,11 @@ export class BookCardComponent {
     categories: []
   };
 
-  constructor (private books: CartService) {};
+  constructor (private sellerService: SellerService) {}
 
-  addToCart (item: Books): void {
-    this.books.addToCart(item)
+  deleteBook (itemId: string) {
+    
+    this.sellerService.deleteBook(itemId);
   }
+
 }

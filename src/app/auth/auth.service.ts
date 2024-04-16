@@ -106,9 +106,17 @@ export class AuthService {
     signOut(auth).then(() => {
       // Sign-out successful.
       console.log("user logged out successfully");
+      alert("Logged out successfully");
+      this.route.navigate(['/login']);
     }).catch((error) => {
       // An error happened.
       console.log(error);
     });
+  }
+
+  getEmail () {
+    const auth = getAuth();
+
+    return auth.currentUser?.email
   }
 }

@@ -56,11 +56,9 @@ export class CartService {
         ...item,
         quantity: 1
       });
-      console.log(items[res]?.quantity);
       alert("Item added to cart");
     } else {
       items[res]["price"] = items[res]["price"] / items[res]["quantity"]++ * items[res]["quantity"];
-      console.log(items[res].quantity);
       alert("Item added to cart");
     }
 

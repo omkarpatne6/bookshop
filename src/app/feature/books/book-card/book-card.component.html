@@ -4,12 +4,12 @@
         <h5 class="tw-cursor-pointer hover:tw-text-blue-500 tw-mt-1 tw-text-sm tw-font-semibold" [routerLink]="['/details', book.isbn]">{{book.title}}</h5>
         <p class="tw-text-xs">{{book.authors[0]}}</p>
         <p class="tw-text-base tw-font-semibold">₹ {{book.price}}</p>
-        <!-- <div class="text-center mt-auto">
+        <div class="text-center mt-auto" *ngIf>
             <button type="button" (click)="addToCart(book)" class=" tw-relative tw-group tw-overflow-hidden tw-w-full tw-h-full tw-py-2 tw-font-semibold tw-border-2 tw-block">
                 <span
                     class="tw-absolute tw-top-0 tw-left-0 tw-flex tw-w-full tw-h-0 tw-mb-0 tw-transition-all tw-duration-200 tw-ease-out tw-transform tw-translate-y-0 tw-bg-gray-200 group-hover:tw-h-full tw-opacity-90"></span>
                 <span class="tw-relative">Add to cart</span>
             </button>
-        </div> -->
+        </div>
     </div>
 </div>

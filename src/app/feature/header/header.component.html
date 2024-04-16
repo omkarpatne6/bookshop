@@ -11,11 +11,22 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-secondary" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"  [routerLinkActiveOptions]="{ exact: true }">Home</a>
+                    <button class="nav-link text-secondary" (click)="toggleSearch()">
+                        <i class="fas fa-search tw-text-[#d1d5db]"></i>
+                    </button>
+                </li>
+
+                <li class="nav-item px-lg-3">
+                    <a class="nav-link text-secondary" routerLink="/" routerLinkActive="active"
+                        ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{ exact: true }">Home</a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a class="nav-link text-secondary" routerLink="/cart" routerLinkActive="active"
                         ariaCurrentWhenActive="page">Cart</a>
+                </li>
+                <li class="nav-item px-lg-3">
+                    <a class="nav-link text-secondary" routerLink="/seller" routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Seller</a>
                 </li>
 
                 <ng-container *ngIf="!isAuthenticated()">
@@ -50,10 +61,7 @@
                         </ul>
                     </li>
                 </ng-container>
-
-
             </ul>
-
         </div>
     </div>
 </nav>

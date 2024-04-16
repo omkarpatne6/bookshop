@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
+import { getAuth } from 'firebase/auth';
+import { SearchService } from '../search/search.service';
 
 @Component({
   selector: 'app-header',
@@ -13,18 +15,23 @@ import { AuthService } from '../../auth/auth.service';
 export class HeaderComponent {
 
   route: any;
+  userEmail: any = "";
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private searchService: SearchService) {
     this.route = router;
   }
 
   isAuthenticated(): boolean {
-    return this.authService.isAuthenticated;
+    const isAuth = this.authService.isAuthenticated;
+    
+    return isAuth;
   }
 
-  logout (): any {
+  logout(): any {
     this.authService.logout();
   }
- 
 
+  toggleSearch(): void {
+    this.searchService.toggleSearch();
+  }
 }

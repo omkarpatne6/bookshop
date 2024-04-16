@@ -24,6 +24,8 @@ export class BookDetailsComponent implements OnInit {
 
     this.data = this.bookService.getBookById(this.itemId);
 
+    console.log(this.data)
+
   }
 
   addToCart (item: Books): void {
