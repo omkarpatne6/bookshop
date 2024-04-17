@@ -1,11 +1,26 @@
 <div class="container-fluid my-4">
     
     <app-search *ngIf="showSearch"></app-search>
-
-    <button (click)="clearLocalStorage()">remove</button>
+    
+    <div class="tw-me-5">
+        <button data-dropdown-toggle="dropdown" class="tw-ms-auto tw-block tw-relative" (click)="toggleDropdown()">
+            <i class="bi bi-sort-up tw-text-3xl"></i>
+            
+            <div *ngIf="isSortShowing" class="tw-absolute tw-z-50 tw-right-0 tw-top-10 tw-bg-white tw-border-2" (click)="stopPropagation($event)">
+                <ul class="text-sm text-gray-700 dark:text-gray-200 tw-w-20" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <button class="tw-block tw-px-4 tw-py-2 hover:tw-bg-gray-100 tw-text-xs tw-w-full" (click)="setOrderBy('asc')">A-Z</button>
+                    </li>
+                    <li>
+                        <button href="#" class="tw-block tw-px-4 tw-py-2 hover:tw-bg-gray-100 tw-text-xs tw-w-full" (click)="setOrderBy('desc')">Z-A</button>
+                    </li>
+                </ul>
+            </div>
+        </button>        
+    </div>
     
     <div class="row">
-        <div class="col-md-3 col-lg-2 card-deck gy-4" *ngFor="let book of filteredData">
+        <div class="col-md-3 col-lg-2 card-deck gy-4" *ngFor="let book of filteredData | sort: 'title': orderBy">
             <app-book-card [book]=book></app-book-card>
         </div>
     </div>

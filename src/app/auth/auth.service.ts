@@ -107,6 +107,7 @@ export class AuthService {
       // Sign-out successful.
       console.log("user logged out successfully");
       alert("Logged out successfully");
+      sessionStorage.clear();
       this.route.navigate(['/login']);
     }).catch((error) => {
       // An error happened.

@@ -21,7 +21,8 @@ export class EditComponent implements OnInit {
   form: any = {
     title: "",
     shortDescription: "",
-    price: 0
+    price: 0,
+    thumbnailUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
   }
 
   constructor (private route: ActivatedRoute, private bookService: BookService, private sellerService: SellerService) {}
@@ -31,7 +32,7 @@ export class EditComponent implements OnInit {
 
     this.data = this.bookService.getBookById(this.itemId);
 
-    this.form = { ...this.form, title: this.data.title, shortDescription: this.data.shortDescription, price: this.data.price };
+    this.form = { ...this.form, title: this.data.title, shortDescription: this.data.shortDescription, price: this.data.price, thumbnailUrl: this.data.thumbnailUrl };
 
   }
 
@@ -40,6 +41,10 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
+    if (!this.form.title || !this.form.shortDescription || !this.form.price) {
+      alert("Please fill necessary fields");
+      return;
+    }
     this.sellerService.submitEdit(this.form, this.itemId);
   }
 }

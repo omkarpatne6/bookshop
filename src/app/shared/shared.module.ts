@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SellerComponent } from './seller/seller.component';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    SellerComponent
+    SortPipe
   ],
-  exports :[
-    SellerComponent
+  exports: [
+    SortPipe
   ]
 })
-export class FeatureModule { }
+export class SharedModule { }

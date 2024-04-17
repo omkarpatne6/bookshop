@@ -37,7 +37,7 @@ export const routes: Routes = [
     },
     {
         path: 'seller',
-        component: SellerComponent,
+        loadChildren: () => import('./feature/seller/seller.module').then(m => m.SellerModule),
         title: "Seller",
         canActivate: [AuthGuard]
     },

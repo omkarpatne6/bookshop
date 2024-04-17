@@ -3,10 +3,8 @@
         <div class="row tw-h-[90%] tw-w-full shadow-lg">
             <div class="col-md-6 tw-bg-gray-50 tw-h-full">
                 <img *ngIf="data && data.thumbnailUrl" class="tw-h-full tw-max-h-full tw-m-auto"
-                    src={{data?.thumbnailUrl}}
-                    alt="Card image cap">
-                <img *ngIf="!data || !data.thumbnailUrl" class="tw-h-full tw-max-h-full tw-m-auto"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+                    src={{data?.thumbnailUrl}} alt="Card image cap">
+                <img *ngIf="!data || !data.thumbnailUrl" class="tw-h-full tw-max-h-full tw-m-auto" [src]=form.thumbnailUrl
                     alt="No Image">
             </div>
             <div class="col-md-6 tw-flex tw-flex-col tw-justify-center md:tw-px-10">
@@ -15,13 +13,18 @@
                     <input type="text" id="title" name="title" placeholder="Book title" #title [(ngModel)]="form.title"
                         class="tw-bg-gray-50 tw-mb-4 tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-focus:ring-blue-500 tw-focus:border-blue-500 tw-block tw-w-full tw-p-2.5  tw-dark:bg-gray-700 tw-dark:border-gray-600 tw-dark:placeholder-gray-400 tw-dark:text-white tw-dark:focus:ring-blue-500 tw-dark:focus:border-blue-500 " />
 
-                        <label for="shortDescription" class="tw-text-base tw-font-semibold mb-1">Description</label>
+                    <label for="shortDescription" class="tw-text-base tw-font-semibold mb-1">Description</label>
 
                     <textarea id="shortDescription" name="shortDescription" placeholder="Book description"
                         #shortDescription [(ngModel)]="form.shortDescription"
                         class=" tw-mb-4 tw-bg-gray-50 tw-h-40 tw-outline-none tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-focus:ring-blue-500 tw-focus:border-blue-500 tw-block tw-w-full tw-p-2.5  tw-dark:bg-gray-700 tw-dark:border-gray-600 tw-dark:placeholder-gray-400 tw-dark:text-white tw-dark:focus:ring-blue-500 tw-dark:focus:border-blue-500 "></textarea>
 
-                        <label for="price" class="tw-text-base tw-font-semibold mb-1">Price (₹)</label>
+
+                    <label for="thumbnailUrl" class="tw-text-base tw-font-semibold mb-1">Image URL</label>
+                    <input type="text" id="thumbnailUrl" name="thumbnailUrl" placeholder="Image URL" #imgUrl [(ngModel)]="form.thumbnailUrl"
+                        class="tw-bg-gray-50 tw-mb-4 tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-focus:ring-blue-500 tw-focus:border-blue-500 tw-block tw-w-full tw-p-2.5  tw-dark:bg-gray-700 tw-dark:border-gray-600 tw-dark:placeholder-gray-400 tw-dark:text-white tw-dark:focus:ring-blue-500 tw-dark:focus:border-blue-500 " />
+
+                    <label for="price" class="tw-text-base tw-font-semibold mb-1">Price (₹)</label>
 
                     <input type="text" id="price" name="price" placeholder="Price" #price [(ngModel)]="form.price"
                         class="tw-mb-4 tw-bg-gray-50 tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-focus:ring-blue-500 tw-focus:border-blue-500 tw-block tw-w-full tw-p-2.5  tw-dark:bg-gray-700 tw-dark:border-gray-600 tw-dark:placeholder-gray-400 tw-dark:text-white tw-dark:focus:ring-blue-500 tw-dark:focus:border-blue-500 " />

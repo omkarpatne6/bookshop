@@ -14,16 +14,22 @@ export class CartService {
 
   fetchCart(): Array<Books> {
     const data = sessionStorage.getItem("items");
-  
+
     if (data) {
       this.cartData = JSON.parse(data);
     } else {
       this.cartData = [];
     }
-  
+
     return this.cartData;
   }
-  
+
+  getSize(): any {
+    const data = sessionStorage.getItem("items");
+    const parsedData = data ? JSON.parse(data) : [];
+    return parsedData.length;
+  }
+
   totalPrice() {
     let total = 0;
 

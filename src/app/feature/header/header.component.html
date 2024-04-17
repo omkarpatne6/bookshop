@@ -21,8 +21,14 @@
                         ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{ exact: true }">Home</a>
                 </li>
                 <li class="nav-item px-lg-3">
-                    <a class="nav-link text-secondary" routerLink="/cart" routerLinkActive="active"
-                        ariaCurrentWhenActive="page">Cart</a>
+                    <a class="nav-link text-secondary position-relative" routerLink="/cart" routerLinkActive="active"
+                        ariaCurrentWhenActive="page">Cart
+                        <span *ngIf="cartSize"
+                            class="position-absolute top-0 start-100 translate-middle badge tw-rounded bg-danger tw-p-1 tw-text-[0.6rem]">
+                            {{cartSize}}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
                 </li>
                 <li class="nav-item px-lg-3">
                     <a class="nav-link text-secondary" routerLink="/seller" routerLinkActive="active"

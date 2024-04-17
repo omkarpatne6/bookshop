@@ -4,7 +4,7 @@
         class="tw-ms-auto tw-relative tw-group tw-overflow-hidden tw-mt-5 tw-p-1 tw-m-0 tw-font-semibold tw-border-2 tw-block tw-w-fit">
         <span
             class="tw-absolute tw-top-0 tw-left-0 tw-flex tw-h-0 tw-mb-0 tw-w-full tw-transition-all tw-duration-200 tw-ease-out tw-transform tw-translate-y-0 tw-bg-gray-200 group-hover:tw-h-full tw-opacity-90"></span>
-        <span class="tw-relative">Add book +</span>
+        <span class="tw-relative">Add book+</span>
     </a>
 
     <app-search *ngIf="showSearch"></app-search>
@@ -13,5 +13,5 @@
         <div class="col-md-3 col-lg-2 card-deck gy-4" *ngFor="let book of filteredData">
             <app-seller-card [book]=book></app-seller-card>
         </div>
-    </div>
+    </div> 
 </div>
